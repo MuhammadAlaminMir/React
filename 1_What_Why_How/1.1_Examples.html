@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First React App</title>
+</head>
+
+<body>
+
+    <!-- This is where our React app will live -->
+    <div id="root"></div>
+
+    <!-- 1. Load React and ReactDOM libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- 2. Load Babel to transpile JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 3. Our React code, written with JSX -->
+    <!--    The 'type="text/babel"' tells Babel to process this script -->
+    <script type="text/babel">
+        // Import the useState hook from the global React object
+        const { useState } = React;
+
+        // Define a Function Component
+        function App() {
+            // Use the useState hook to create a piece of state
+            const [name, setName] = useState("Student");
+
+            // This function will be called when the input changes
+            function handleNameChange(event) {
+                // Update the state with the new value from the input
+                setName(event.target.value);
+            }
+
+            // The component returns JSX
+            return (
+                <div>
+                    <h1>Hello, {name}!</h1>
+                    <p>React is a library, not a framework.</p>
+                    <p>It uses a Virtual DOM for efficient updates.</p>
+                    <p>This JSX is transpiled by Babel.</p>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={handleNameChange}
+                        placeholder="Type your name"
+                    />
+                </div>
+            );
+        }
+
+        // Find the root DOM node
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        // Render our App component into the root node
+        root.render(<App />);
+
+    </script>
+
+</body>
+
+</html>
